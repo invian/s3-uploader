@@ -24,11 +24,19 @@ def main():
 
     args = parser.parse_args()
 
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+
+    if not AWS_ACCESS_KEY_ID or not AWS_SECRET_ACCESS_KEY:
+        raise Exception('AWS Credentials are not specified')
+
     # Создайте сессию и клиент S3
     session = boto3.session.Session()
     s3_client = session.client(
         service_name='s3',
         endpoint_url=args.endpoint_url,
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
         config=Config(signature_version='s3v4'),
     )
 

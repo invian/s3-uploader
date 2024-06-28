@@ -1,0 +1,7 @@
+name: Test S3 upload
+on: [push]
+jobs:
+  test-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - run: cd tests && ./test.sh
