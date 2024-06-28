@@ -4,4 +4,5 @@ jobs:
   test-upload:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: cd tests && ./test.sh
